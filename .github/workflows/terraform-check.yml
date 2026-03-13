@@ -2,16 +2,17 @@ name: Terraform Validation
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   terraform:
-    name: Terraform Checks
     runs-on: ubuntu-latest
 
-    steps:
+    defaults:
+      run:
+        working-directory: ./day4
 
+    steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -23,12 +24,9 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./day4
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./day4
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./day4
